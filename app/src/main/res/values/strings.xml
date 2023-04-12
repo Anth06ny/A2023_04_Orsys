@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name" translatable="false">A2023_04_Orsys</string>
+    <string name="like">Like</string>
+    <string name="dislike">Dislike</string>
+    <string name="complement">Complement :</string>
+    <string name="write_name_here">Write name here</string>
+    <string name="validate">Validate</string>
+    <string name="cancel">Cancel</string>
+</resources>
