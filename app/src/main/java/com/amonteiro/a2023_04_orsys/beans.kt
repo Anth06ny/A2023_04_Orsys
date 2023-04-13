@@ -44,11 +44,13 @@ data class District(
 data class WeatherBean(
     var name: String,
     @SerializedName("main")
-    var temperature: TempBean,
-    var wind : WindBean
+    var temperature: TempBean?,
+    var wind : WindBean,
+    var weather:List<DescriptionBean>,
 )
 
-data class TempBean(var temp: Double)
+data class TempBean(var temp: Double, var temp_min: Double?, var temp_max: Double?)
+data class DescriptionBean(var description: String, var icon: String)
 data class WindBean(var speed: Double)
 
 /* -------------------------------- */
