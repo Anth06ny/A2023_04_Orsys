@@ -53,6 +53,8 @@ data class TempBean(var temp: Double, var temp_min: Double?, var temp_max: Doubl
 data class DescriptionBean(var description: String, var icon: String)
 data class WindBean(var speed: Double)
 
+data class ErrorBean(var message:String?)
+
 /* -------------------------------- */
 // EXO
 /* -------------------------------- */

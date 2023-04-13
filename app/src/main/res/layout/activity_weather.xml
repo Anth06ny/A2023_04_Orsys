@@ -32,6 +32,17 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tvError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="TextView"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"

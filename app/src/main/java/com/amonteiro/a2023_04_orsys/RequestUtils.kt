@@ -59,6 +59,12 @@ object RequestUtils {
             //use permet de fermer la réponse qu'il y ait ou non une exception
             //Analyse du code retour
             if (!it.isSuccessful) {
+                val json = it.body.string()
+                if(json.contains("{") && json.contains("}")) {
+                    //val error = gson.fromJson(json, ErrorBean::class.java)
+                    throw Exception("Réponse du serveur incorrect :$json")
+                }
+
                 throw Exception("Réponse du serveur incorrect :${it.code}")
             }
             //Résultat de la requête
