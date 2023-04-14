@@ -40,6 +40,8 @@ data class District(
 /* -------------------------------- */
 // API Météo
 /* -------------------------------- */
+data class WeatherAroundResult(val list : List<WeatherBean>)
+
 //Ici je n'ai mis que ce qui est utile pour l'affichage demandé mais on peut tout mettre
 data class WeatherBean(
     var name: String,

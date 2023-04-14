@@ -43,6 +43,12 @@ object RequestUtils {
         return gson.fromJson(json, Array<SeLogerBean>::class.java).toList()
     }
 
+
+    fun loadWeatherAround(): List<WeatherBean> {
+        val json = sendGet("https://api.openweathermap.org/data/2.5/find?lat=43.568705&lon=1.489464&cnt=5&appid=b80967f0a6bd10d23e44848547b26550&units=metric&lang=fr")
+        return gson.fromJson(json, WeatherAroundResult::class.java).list
+    }
+
     fun loadWeather(city: String): WeatherBean {
         val json = sendGet(URL_API_WEATHER + city)
         return gson.fromJson(json, WeatherBean::class.java)
