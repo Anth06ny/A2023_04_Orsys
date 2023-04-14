@@ -43,6 +43,7 @@ object RequestUtils {
 
     fun loadWeather(city: String): WeatherBean {
         val json = sendGet(URL_API_WEATHER + city)
+        Thread.sleep(5000)
         return gson.fromJson(json, WeatherBean::class.java)
     }
 
