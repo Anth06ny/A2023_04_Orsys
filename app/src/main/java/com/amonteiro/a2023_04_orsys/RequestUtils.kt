@@ -6,6 +6,8 @@ import okhttp3.Request
 
 const val URL_API_WEATHER =
     "https://api.openweathermap.org/data/2.5/weather?appid=b80967f0a6bd10d23e44848547b26550&units=metric&lang=fr&q="
+const val URL_API_WEATHER_LAT_LNG =
+    "https://api.openweathermap.org/data/2.5/weather?appid=b80967f0a6bd10d23e44848547b26550&units=metric&lang=fr"
 
 object RequestUtils {
 
@@ -28,7 +30,7 @@ object RequestUtils {
             .build()
 
         //Execution de la requête
-        val json =  client.newCall(request).execute().use { //it:Response
+        val json = client.newCall(request).execute().use { //it:Response
             //use permet de fermer la réponse qu'il y ait ou non une exception
             //Analyse du code retour
             if (!it.isSuccessful) {
@@ -43,10 +45,13 @@ object RequestUtils {
 
     fun loadWeather(city: String): WeatherBean {
         val json = sendGet(URL_API_WEATHER + city)
-        Thread.sleep(5000)
         return gson.fromJson(json, WeatherBean::class.java)
     }
 
+    fun loadWeather(latitude: Double, longitude: Double): WeatherBean {
+        val json = sendGet("$URL_API_WEATHER_LAT_LNG&lat=$latitude&lon=$longitude")
+        return gson.fromJson(json, WeatherBean::class.java)
+    }
 
 
     //Méthode qui prend en entrée une url, execute la requête
@@ -61,7 +66,7 @@ object RequestUtils {
             //Analyse du code retour
             if (!it.isSuccessful) {
                 val json = it.body.string()
-                if(json.contains("{") && json.contains("}")) {
+                if (json.contains("{") && json.contains("}")) {
                     //val error = gson.fromJson(json, ErrorBean::class.java)
                     throw Exception("Réponse du serveur incorrect :$json")
                 }

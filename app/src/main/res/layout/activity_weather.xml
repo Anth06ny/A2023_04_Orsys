@@ -17,7 +17,7 @@
 
         <EditText
             android:id="@+id/etCityName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
@@ -28,7 +28,15 @@
             android:id="@+id/btLoad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="Load" />
+
+        <Button
+            android:id="@+id/btMyLoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:foreground="@drawable/baseline_my_location_24"
+            android:foregroundGravity="center" />
 
     </LinearLayout>
 

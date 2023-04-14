@@ -1,7 +1,10 @@
 package com.amonteiro.a2023_04_orsys
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.amonteiro.a2023_04_orsys.databinding.ActivityWeatherBinding
@@ -23,7 +26,32 @@ class WeatherActivity : AppCompatActivity() {
             model.loadData(binding.etCityName.text.toString())
         }
 
+        binding.btMyLoc.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+                //On a la permission
+                model.loadData(this)
+            }
+            else  {
+                ActivityCompat.requestPermissions(this,
+                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 0)
+            }
+        }
+
         observe()
+    }
+
+    //Callback de la popup permission
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED) {
+            //On a la permission
+            model.loadData(this)
+        }
+        else  {
+           model.errorMessage.postValue("Il faut la permission")
+        }
     }
 
     fun observe() {
